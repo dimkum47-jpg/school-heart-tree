@@ -98,7 +98,7 @@ function homePage(){
   </section><section class="two-cols" style="margin-top:29px">
     <article class="card"><h2>📚 책에서 자라는 마음</h2><p class="muted">읽은 책과 기억에 남는 장면, 느낀 점을 한두 문장으로 기록해요.</p><button class="button secondary" data-nav="student">독서 기록하기</button></article>
     <article class="card"><h2>💌 칭찬에서 자라는 마음</h2><p class="muted">친구가 해 준 구체적인 행동과 고마운 이유를 적어요.</p><button class="button secondary" data-nav="student">친구 칭찬하기</button></article>
-  </section><section class="card" style="text-align:center"><h2>마음나무는 어떻게 자랄까요?</h2><p class="muted">① 기록을 남겨요 &nbsp; → &nbsp; ② 반장·부반장이 확인해요 &nbsp; → &nbsp; ③ 열매가 맺히고 상품를 받아요!</p><p class="small muted">승인된 기록만 공개하며, 작성자 이름과 칭찬받은 친구 이름은 보여 주지 않습니다. 이름이나 개인정보가 포함된 내용은 작성하지 마세요.</p></section>`;
+  </section><section class="card" style="text-align:center"><h2>마음나무는 어떻게 자랄까요?</h2><p class="muted">① 기록을 남겨요 &nbsp; → &nbsp; ② 반장·부반장이 확인해요 &nbsp; → &nbsp; ③ 열매가 맺히고 상품을 받아요!</p><p class="small muted">승인된 기록만 공개하며, 작성자 이름과 칭찬받은 친구 이름은 보여 주지 않습니다. 이름이나 개인정보가 포함된 내용은 작성하지 마세요.</p></section>`;
 }
 function studentAuth(){
   const isRegister=state.studentAuthTab==='register';
@@ -229,7 +229,7 @@ async function review(id,decision){
   try{await api('/api/review',{method:'POST',body:{id,decision,feedback}});await Promise.all([refreshTree(),state.role==='admin'?refreshAdmin():refreshOfficer()]);toast(decision==='approved'?'기록을 승인했어요. 열매가 맺혔어요!':'보완 요청을 보냈어요.');render();}
   catch(err){toast(err.message);}
 }
-async function award(id){if(!confirm('상품를 실제로 전달했나요? 확인하면 지급 완료로 기록됩니다.'))return;
+async function award(id){if(!confirm('상품을 실제로 전달했나요? 확인하면 지급 완료로 기록됩니다.'))return;
   try{const data=await api('/api/award',{method:'POST',body:{id}});await(state.role==='admin'?refreshAdmin():refreshOfficer());toast(`지급 완료! 이번 주 ${data.count}/2개`);render();}
   catch(err){toast(err.message);}
 }

@@ -38,8 +38,8 @@ export function validateEntry(input, grade) {
   return { type, title:'', content:'', peerName, deed, reason };
 }
 export function limitAwardCount(currentCount, alreadyAwarded, approved) {
-  if (!approved) throw new Error('승인된 기록만 상품를 지급할 수 있어요.');
-  if (alreadyAwarded) throw new Error('이미 상품를 지급한 기록이에요.');
+  if (!approved) throw new Error('승인된 기록만 상품을 지급할 수 있어요.');
+  if (alreadyAwarded) throw new Error('이미 상품을 지급한 기록이에요.');
   if (currentCount >= 2) throw new Error('이번 주에는 이미 상품 2개를 지급했어요.');
   return currentCount + 1;
 }
