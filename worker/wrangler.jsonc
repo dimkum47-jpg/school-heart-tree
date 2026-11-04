@@ -5,5 +5,6 @@
   "vars": {
     "FIREBASE_PROJECT_ID": "school-heart-tree",
     "ALLOWED_ORIGIN": "https://dimkum47-jpg.github.io"
-  }
+  },
+  "workers_dev": true
 }
