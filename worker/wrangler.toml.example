@@ -1,0 +1,13 @@
+name = "school-heart-tree-api"
+main = "src.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+FIREBASE_PROJECT_ID = "YOUR_DEDICATED_FIREBASE_PROJECT_ID"
+ALLOWED_ORIGIN = "https://dimkum47-jpg.github.io"
+
+# Set ALL of these with Cloudflare Worker Secrets instead of source code:
+# FIREBASE_SERVICE_ACCOUNT_JSON  (dedicated service account, minimal IAM)
+# ADMIN_INITIAL_PASSWORD        (teacher initial password)
+# OFFICER_INITIAL_PASSWORD      (officer initial password)
+# PIN_PEPPER                    (random string >= 32 characters)

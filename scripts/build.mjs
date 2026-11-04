@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+const source=path.resolve('web'),dest=path.resolve('dist');
+fs.rmSync(dest,{recursive:true,force:true});fs.cpSync(source,dest,{recursive:true});
+const buildVersion=(process.env.DEPLOY_SHA || crypto.randomBytes(8).toString('hex')).slice(0,12);
+const replace=(file,search,newText)=>{const filepath=path.join(dest,file);const s=fs.readFileSync(filepath,'utf8');if(!s.includes(search))throw Error(`Expected marker missing in ${file}: ${search}`);fs.writeFileSync(filepath,s.replaceAll(search,newText));};
+replace('index.html','./style.css"',`./style.css?v=${buildVersion}"`);
+replace('index.html','./app.js"',`./app.js?v=${buildVersion}"`);
+replace('app.js',"from './config.js'",`from './config.js?v=${buildVersion}'`);
+replace('app.js',"register('./sw.js')",`register('./sw.js?v=${buildVersion}')`);
+replace('sw.js',"heart-tree-static-v1",`heart-tree-static-${buildVersion}`);
+console.log(`Build ${buildVersion} -> dist/`);

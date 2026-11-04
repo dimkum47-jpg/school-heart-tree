@@ -1,0 +1,1 @@
+{"name":"heart-tree-worker","private":true,"type":"module","scripts":{"check":"node --check src.js && node --check domain.mjs"}}

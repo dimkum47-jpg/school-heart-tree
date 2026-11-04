@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Heart Tree's private collections are accessed ONLY by the verified Worker
+    // through a scoped service account. Never expose these documents directly
+    // to untrusted students, officers or public visitors.
+    match /students/{id} { allow read, write: if false; }
+    match /records/{id} { allow read, write: if false; }
+    match /officers/{id} { allow read, write: if false; }
+    match /settings/{id} { allow read, write: if false; }
+    match /sessions/{id} { allow read, write: if false; }
+    match /attempts/{id} { allow read, write: if false; }
+    match /rewardWeeks/{id} { allow read, write: if false; }
+    // For a NEW dedicated Firebase project, all other documents are denied.
+    // If the same Firebase project serves other apps, MERGE rules carefully:
+    // do not replace a shared project's rules with this file.
+    match /{document=**} { allow read, write: if false; }
+  }
+}
