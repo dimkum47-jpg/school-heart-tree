@@ -89,7 +89,7 @@ function homePage(){
         <div class="stat"><span>🌱 전체 열매</span><strong>${stats.total}</strong></div>
       </div>
       <button type="button" class="button" data-nav="student">나도 마음 기록하기 →</button>
-      <p class="field-help" style="margin-top:14px">독서 또는 칭찬 기록 한 개당 제티 한 개! <b>매주 최대 2개</b>를 받을 수 있어요.</p>
+      <p class="field-help" style="margin-top:14px">독서 또는 칭찬 기록 한 개당 상품 한 개! <b>매주 최대 2개</b>를 받을 수 있어요.</p>
     </div>
     <div class="tree-area"><img class="tree-image" src="./assets/heart-tree.webp" alt="햇살이 비치는 언덕 위, 책과 알록달록한 열매가 가득한 커다란 마음나무" />
       <div class="fruit-layer">${heroFruits(fruits)}</div>
@@ -98,7 +98,7 @@ function homePage(){
   </section><section class="two-cols" style="margin-top:29px">
     <article class="card"><h2>📚 책에서 자라는 마음</h2><p class="muted">읽은 책과 기억에 남는 장면, 느낀 점을 한두 문장으로 기록해요.</p><button class="button secondary" data-nav="student">독서 기록하기</button></article>
     <article class="card"><h2>💌 칭찬에서 자라는 마음</h2><p class="muted">친구가 해 준 구체적인 행동과 고마운 이유를 적어요.</p><button class="button secondary" data-nav="student">친구 칭찬하기</button></article>
-  </section><section class="card" style="text-align:center"><h2>마음나무는 어떻게 자랄까요?</h2><p class="muted">① 기록을 남겨요 &nbsp; → &nbsp; ② 반장·부반장이 확인해요 &nbsp; → &nbsp; ③ 열매가 맺히고 제티를 받아요!</p><p class="small muted">승인된 기록만 공개하며, 작성자 이름과 칭찬받은 친구 이름은 보여 주지 않습니다. 이름이나 개인정보가 포함된 내용은 작성하지 마세요.</p></section>`;
+  </section><section class="card" style="text-align:center"><h2>마음나무는 어떻게 자랄까요?</h2><p class="muted">① 기록을 남겨요 &nbsp; → &nbsp; ② 반장·부반장이 확인해요 &nbsp; → &nbsp; ③ 열매가 맺히고 상품를 받아요!</p><p class="small muted">승인된 기록만 공개하며, 작성자 이름과 칭찬받은 친구 이름은 보여 주지 않습니다. 이름이나 개인정보가 포함된 내용은 작성하지 마세요.</p></section>`;
 }
 function studentAuth(){
   const isRegister=state.studentAuthTab==='register';
@@ -127,7 +127,7 @@ function writeForm(){
        <div class="field"><label for="recordDeed">친구가 실제로 어떤 행동을 했나요?</label><textarea id="recordDeed" name="deed" maxlength="300" placeholder="쉬는 시간에 준비물을 잃어버렸을 때 같이 찾아주었어요." required>${escapeHtml(data.deed||'')}</textarea></div>
        <div class="field"><label for="recordReason">그 행동이 왜 고마웠나요?</label><textarea id="recordReason" name="reason" maxlength="300" placeholder="혼자였으면 힘들었을 텐데 함께해 줘서 든든했어요." required>${escapeHtml(data.reason||'')}</textarea><p class="field-help">그냥 '착하다', '칭찬한다'라고만 쓰면 보완 요청을 받을 수 있어요. 공개할 때 친구 이름은 숨겨집니다.</p></div>`}
     <button class="button full" data-action="submit" type="submit">${state.editingId?'수정하고 다시 확인받기':'기록 제출하기'}</button>
-  </form>${rec?.status==='approved'?'<p class="field-help">승인된 글을 수정하면 다시 확인 대기로 변경되며, 열매는 재승인 전까지 숨겨집니다. 기존 제티 지급 이력은 유지됩니다.</p>':''}</section>`;
+  </form>${rec?.status==='approved'?'<p class="field-help">승인된 글을 수정하면 다시 확인 대기로 변경되며, 열매는 재승인 전까지 숨겨집니다. 기존 상품 지급 이력은 유지됩니다.</p>':''}</section>`;
 }
 function entryText(r){return r.type==='reading'?`<strong>「${escapeHtml(r.title)}」</strong><p>${escapeHtml(r.content)}</p>`:`<strong>칭찬받은 친구: ${escapeHtml(r.peerName)}</strong><p>${escapeHtml(r.deed)}</p><p>${escapeHtml(r.reason)}</p>`;}
 function entryCard(r,mode='student'){
@@ -135,7 +135,7 @@ function entryCard(r,mode='student'){
   return `<div class="entry-card"><div class="entry-head">
     <span class="pill ${r.type==='reading'?'':'pink'}">${r.type==='reading'?'📖 독서':'💗 칭찬'}</span>
     <span class="pill ${statusClass(r.status)}">${statusLabel(r.status)}</span>
-    ${r.rewardedAt?'<span class="pill gold">🍫 제티 지급 완료</span>':''}
+    ${r.rewardedAt?'<span class="pill gold">🎁 상품 지급 완료</span>':''}
   </div>
   ${canReview?`<p class="entry-meta">${r.grade}학년 ${r.studentNumber}번 · ${escapeHtml(r.studentName||'')}</p>`:''}
   <div style="margin-top:10px">${entryText(r)}</div>
@@ -145,7 +145,7 @@ function entryCard(r,mode='student'){
   ${canReview?`<div class="panel-actions">
     ${r.status!=='approved'?`<button type="button" class="button small" data-review="${escapeHtml(r.id)}" data-decision="approved">✓ 승인</button>`:''}
     <button type="button" class="button small outline" data-review="${escapeHtml(r.id)}" data-decision="changes_requested">보완 요청</button>
-    ${r.status==='approved'&&!r.rewardedAt?`<button type="button" class="button small light" data-award="${escapeHtml(r.id)}">🍫 제티 지급 확인</button>`:''}
+    ${r.status==='approved'&&!r.rewardedAt?`<button type="button" class="button small light" data-award="${escapeHtml(r.id)}">🎁 상품 지급 확인</button>`:''}
     ${mode==='admin'?`<button type="button" class="button small danger" data-delete-record="${escapeHtml(r.id)}">삭제</button>`:''}
   </div>`:''}
   </div>`;
@@ -155,7 +155,7 @@ function studentPage(){
   const s=state.student, records=state.mine?.records||[];const week=state.mine?.weekCount||0;
   const list=records.filter(r=>state.studentStatus==='all'||r.status===state.studentStatus);
   return `<div class="title-row"><div><h1 class="page-title">${escapeHtml(s?.name||'학생')}의 마음 기록장 🌿</h1><p class="subheading">${s?.grade||''}학년 ${s?.number||''}번 · 기록을 남길 때마다 조금씩 자라요.</p></div><span class="count-dot">총 ${records.length}개의 기록</span></div>
-  <div class="badge-banner"><strong>이번 주 제티 ${week} / 2개</strong><p>독서와 칭찬 중 마음에 드는 활동을 골라 기록해요. 주간 지급 한도는 2개입니다.</p><div class="progress"><i style="width:${Math.min(100,week/2*100)}%"></i></div></div>
+  <div class="badge-banner"><strong>이번 주 상품 ${week} / 2개</strong><p>독서와 칭찬 중 마음에 드는 활동을 골라 기록해요. 주간 지급 한도는 2개입니다.</p><div class="progress"><i style="width:${Math.min(100,week/2*100)}%"></i></div></div>
   <div class="two-cols"><div>${writeForm()}</div><div><section class="card"><div class="title-row"><h2>🗂️ 나의 기록</h2><span class="pill">${records.length}개</span></div>
   <div class="filter-bar"><label class="sr-only" for="studentFilter">기록 상태</label><select id="studentFilter"><option value="all" ${state.studentStatus==='all'?'selected':''}>전체</option><option value="pending" ${state.studentStatus==='pending'?'selected':''}>확인 대기</option><option value="approved" ${state.studentStatus==='approved'?'selected':''}>승인 완료</option><option value="changes_requested" ${state.studentStatus==='changes_requested'?'selected':''}>보완 요청</option></select></div>
   <div class="record-list">${list.length?list.map(r=>entryCard(r)).join(''):'<div class="empty">아직 해당하는 기록이 없어요. 🌱</div>'}</div></section></div></div>`;
@@ -229,14 +229,14 @@ async function review(id,decision){
   try{await api('/api/review',{method:'POST',body:{id,decision,feedback}});await Promise.all([refreshTree(),state.role==='admin'?refreshAdmin():refreshOfficer()]);toast(decision==='approved'?'기록을 승인했어요. 열매가 맺혔어요!':'보완 요청을 보냈어요.');render();}
   catch(err){toast(err.message);}
 }
-async function award(id){if(!confirm('제티를 실제로 전달했나요? 확인하면 지급 완료로 기록됩니다.'))return;
+async function award(id){if(!confirm('상품를 실제로 전달했나요? 확인하면 지급 완료로 기록됩니다.'))return;
   try{const data=await api('/api/award',{method:'POST',body:{id}});await(state.role==='admin'?refreshAdmin():refreshOfficer());toast(`지급 완료! 이번 주 ${data.count}/2개`);render();}
   catch(err){toast(err.message);}
 }
 function exportCsv(){
   const data=state.admin;if(!data)return;
   const safe=value=>{let s=String(value??'').replace(/\r?\n/g,' ');if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};
-  const headings=['학년','번호','이름','종류','책 제목','칭찬 친구','내용/행동','칭찬 이유','상태','작성일시','승인일시','제티 지급일시','보완 의견'];
+  const headings=['학년','번호','이름','종류','책 제목','칭찬 친구','내용/행동','칭찬 이유','상태','작성일시','승인일시','상품 지급일시','보완 의견'];
   const rows=data.records.map(r=>{const s=data.students.find(s=>s.id===r.studentKey);return [r.grade,r.studentNumber,s?.name||'',r.type==='reading'?'독서':'칭찬',r.title,r.peerName,r.type==='reading'?r.content:r.deed,r.reason,statusLabel(r.status),dateLabel(r.createdAt),dateLabel(r.approvedAt),dateLabel(r.rewardedAt),r.feedback];});
   const blob=new Blob(['\ufeff'+[headings,...rows].map(x=>x.map(safe).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8;'});
   const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='마음나무_기록_'+new Date().toISOString().slice(0,10)+'.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
