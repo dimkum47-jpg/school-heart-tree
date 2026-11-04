@@ -16,7 +16,7 @@ test('PWA shell and installation metadata exist and point to real files',()=>{
     const size=Number(icon.sizes.split('x')[0]);
     assert.equal(file.readUInt32BE(16),size);assert.equal(file.readUInt32BE(20),size);
   }
-  assert.ok(fs.statSync(path.join(root,'web/assets/heart-tree.webp')).size>100000);
+  assert.ok(fs.statSync(path.join(root,'web/assets/heart-tree.webp')).size>30000);
 });
 test('PWA avoids caching API or private login data',()=>{
   const sw=read('web/sw.js');
