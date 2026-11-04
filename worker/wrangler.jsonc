@@ -1,0 +1,9 @@
+{
+  "name": "school-heart-tree-api",
+  "main": "src.js",
+  "compatibility_date": "2026-11-01",
+  "vars": {
+    "FIREBASE_PROJECT_ID": "school-heart-tree",
+    "ALLOWED_ORIGIN": "https://dimkum47-jpg.github.io"
+  }
+}
