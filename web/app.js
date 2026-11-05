@@ -91,7 +91,7 @@ function homePage(){
       <button type="button" class="button" data-nav="student">나도 마음 기록하기 →</button>
       <p class="field-help" style="margin-top:14px">독서 또는 칭찬 기록 한 개당 상품 한 개! <b>매주 최대 2개</b>를 받을 수 있어요.</p>
     </div>
-    <div class="tree-area"><img class="tree-image" src="./assets/heart-tree.webp" alt="햇살이 비치는 언덕 위, 책과 알록달록한 열매가 가득한 커다란 마음나무" />
+    <div class="tree-area"><img class="tree-image" src="./assets/heart-tree.webp" alt="햇살이 비치는 언덕 위, 책과 초록 잎이 어우러진 커다란 마음나무" />
       <div class="fruit-layer">${heroFruits(fruits)}</div>
       <div class="tree-note">🍎 독서 · 🍑 칭찬 &nbsp;|&nbsp; 열매를 눌러 내용을 읽어 보세요!</div>
     </div>
